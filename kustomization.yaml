@@ -12,4 +12,4 @@ secretGenerator:
 configMapGenerator:
   - name: filebeat-syslog-config
     files:
-    - filebeat.yml=config/filebeat-syslog.yaml
+      - filebeat.yml=config/filebeat-syslog.yaml
