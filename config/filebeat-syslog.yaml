@@ -70,30 +70,30 @@ filebeat.inputs:
     tags: ["filebeat_plain_syslog"]
 
 filebeat.modules:
-- module: cisco
-  asa:
-    enabled: true
-    var.input: syslog
-    var.syslog_host: 0.0.0.0
-    var.syslog_port: 9001
-  ftd:
-    enabled: true
-    var.input: syslog
-    var.syslog_host: 0.0.0.0
-    var.syslog_port: 9003
-  ios:
-    enabled: true
-    var.input: syslog
-    var.syslog_host: 0.0.0.0
-    var.syslog_port: 9002
-  nexus:
-    enabled: true
-    var.input: udp
-    var.syslog_host: 0.0.0.0
-    var.syslog_port: 9506
-- module: f5
-  bigipapm:
-    enabled: true
-    var.input: udp
-    var.syslog_host: 0.0.0.0
-    var.syslog_port: 9504
+  - module: cisco
+    asa:
+      enabled: true
+      var.input: syslog
+      var.syslog_host: 0.0.0.0
+      var.syslog_port: 9001
+    ftd:
+      enabled: true
+      var.input: syslog
+      var.syslog_host: 0.0.0.0
+      var.syslog_port: 9003
+    ios:
+      enabled: true
+      var.input: syslog
+      var.syslog_host: 0.0.0.0
+      var.syslog_port: 9002
+    nexus:
+      enabled: true
+      var.input: udp
+      var.syslog_host: 0.0.0.0
+      var.syslog_port: 9506
+  - module: f5
+    bigipapm:
+      enabled: true
+      var.input: udp
+      var.syslog_host: 0.0.0.0
+      var.syslog_port: 9504
