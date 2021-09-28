@@ -34,30 +34,17 @@ processors:
           event.Put("host.ip", hostData);
         }
 
-setup.template.enabled: true
-setup.template.name: "filebeat-syslog-%{[agent.version]}"
-setup.template.pattern: "filebeat-syslog-%{[agent.version]}-*"
-setup.template.overwrite: false
-
-# setup.ilm.enabled: auto
-# setup.ilm.rollover_alias: "filebeat-syslog-%{[agent.version]}"
-# setup.ilm.pattern: "{now/d}-000001"
-# setup.ilm.policy_name: "filebeat-syslog"
-# setup.ilm.check_exists: true
-# setup.ilm.overwrite: true
+setup.template.enabled: false
 setup.ilm.enabled: false
 
-output.elasticsearch:
+output.logstash:
   enabled: true
-  hosts: ["${ELASTIC_HOST}:${ELASTIC_PORT}"]
-  username: "${ELASTIC_USERNAME}"
-  password: "${ELASTIC_PASSWORD}"
-  ssl.certificate_authorities:
-    - "/usr/share/filebeat/certs/ca.crt"
-  loadbalance: true
-  index: "filebeat-syslog-%{[agent.version]}-%{+yyyy.MM.dd}"
-  protocol: https
-  ssl.enabled: true
+  hosts: ["${LOGSTASH_HOST}:${LOGSTASH_PORT}"]
+  index: "filebeat-syslog"
+  # ssl.enabled: true
+  # ssl.certificate_authorities:
+  #   - "/usr/share/filebeat/certs/ca.crt"
+
 
 filebeat.inputs:
   - type: syslog

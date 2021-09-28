@@ -21,13 +21,18 @@ spec:
         - name: filebeat-syslog-config
           configMap:
             name: filebeat-syslog-config
-      containers:
-        - name: filebeat-syslog
+      initContainers:
+        - name: filebeat-syslog-setup
           image: docker.elastic.co/beats/filebeat:7.14.2-amd64
+          command: ['/usr/share/filebeat/filebeat']
+          args:
+            - "setup"
+            - "--index-management"
+            - "-e"
           volumeMounts:
             - name: filebeat-syslog-config
               mountPath: /usr/share/filebeat/filebeat.yml
-              subPath: filebeat.yml
+              subPath: filebeat-syslog-setup.yml
             - name: filebeat-syslog-cert
               mountPath: /usr/share/filebeat/certs/
           env:
@@ -45,6 +50,20 @@ spec:
                 secretKeyRef:
                   name: filebeat-syslog-elastic-cred
                   key: password
+      containers:
+        - name: filebeat-syslog
+          image: docker.elastic.co/beats/filebeat:7.14.2-amd64
+          volumeMounts:
+            - name: filebeat-syslog-config
+              mountPath: /usr/share/filebeat/filebeat.yml
+              subPath: filebeat-syslog.yml
+            - name: filebeat-syslog-cert
+              mountPath: /usr/share/filebeat/certs/
+          env:
+            - name: LOGSTASH_HOST
+              value: "logstash-svc"
+            - name: LOGSTASH_PORT
+              value: "5044"
           ports:
             - name: "tcp-9000"
               protocol: TCP
