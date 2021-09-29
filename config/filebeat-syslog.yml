@@ -17,10 +17,6 @@ processors:
           to: event.original
       fail_on_error: false
       ignore_missing: true
-  - fingerprint:
-      fields: ["log.original", "message", "log.source.address"]
-      target_field: "@metadata._id"
-      ignore_missing: true
   - add_cloud_metadata: ~
   - add_docker_metadata: ~
   - script:
