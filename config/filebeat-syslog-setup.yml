@@ -9,17 +9,21 @@ processors:
   - add_docker_metadata: ~
 
 setup.template.enabled: true
+setup.template.type: index
 setup.template.name: "filebeat-syslog-%{[agent.version]}"
 setup.template.pattern: "filebeat-syslog-%{[agent.version]}-*"
 setup.template.overwrite: false
+setup.template.settings:
+  index.number_of_shards: 1
+  index.number_of_replicas: 1
 
-# setup.ilm.enabled: auto
-# setup.ilm.rollover_alias: "filebeat-syslog-%{[agent.version]}"
-# setup.ilm.pattern: "{now/d}-000001"
-# setup.ilm.policy_name: "filebeat-syslog"
-# setup.ilm.check_exists: true
-# setup.ilm.overwrite: true
-setup.ilm.enabled: false
+setup.ilm.enabled: true
+setup.ilm.rollover_alias: "filebeat-syslog-%{[agent.version]}"
+setup.ilm.pattern: "{now/d}-000001"
+setup.ilm.policy_name: "filebeat-syslog"
+setup.ilm.check_exists: true
+setup.ilm.overwrite: false
+# setup.ilm.enabled: false
 
 output.elasticsearch:
   enabled: true
