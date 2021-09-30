@@ -37,7 +37,15 @@ processors:
           event.Put("@timestamp", new Date())
         }
 
-setup.template.enabled: false
+setup.template.enabled: true
+setup.template.type: index
+setup.template.name: "filebeat-syslog-%{[agent.version]}"
+setup.template.pattern: "filebeat-syslog-%{[agent.version]}-*"
+setup.template.overwrite: false
+setup.template.settings:
+  index.number_of_shards: 1
+  index.number_of_replicas: 1
+
 setup.ilm.enabled: true
 setup.ilm.rollover_alias: "filebeat-syslog-%{[agent.version]}"
 setup.ilm.pattern: "{now/d}-000001"
@@ -64,7 +72,6 @@ output.elasticsearch:
   # ssl.enabled: true
   # ssl.certificate_authorities:
   #   - "/usr/share/filebeat/certs/ca.crt"
-
 
 filebeat.inputs:
   - type: syslog

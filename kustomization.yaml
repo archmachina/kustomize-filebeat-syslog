@@ -13,4 +13,3 @@ configMapGenerator:
   - name: filebeat-syslog-config
     files:
       - filebeat-syslog.yml=config/filebeat-syslog.yml
-      - filebeat-syslog-setup.yml=config/filebeat-syslog-setup.yml
