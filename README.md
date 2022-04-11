@@ -1,1 +1,1 @@
-# k8s-filebeat-syslog
+# kustomize-filebeat-syslog
