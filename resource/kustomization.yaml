@@ -1,0 +1,27 @@
+---
+
+kind: Kustomization
+
+secretGenerator:
+  - name: filebeat-syslog-cert
+    type: Opaque
+
+  - name: filebeat-syslog-credentials
+    type: Opaque
+    # literals:
+    #   - elastic_username=changeme
+    #   - elastic_password=changeme
+
+configMapGenerator:
+  - name: filebeat-syslog-files
+    files:
+      - filebeat.yml=files/filebeat-syslog.yml
+      - ilm-policy.json=files/ilm-policy.json
+
+  - name: filebeat-syslog-config
+    literals:
+      - elasticwait_cert_verify=0
+      - elasticwait_time_wait=30
+      - elasticwait_max_attempts=60
+      - elastic_host=elastic-svc
+      - elastic_port=9200
