@@ -1,0 +1,23 @@
+---
+
+kind: Component
+
+patches:
+  - patch: |-
+      ---
+      apiVersion: apps/v1
+      kind: DaemonSet
+      metadata:
+        name: filebeat-syslog-ds
+      spec:
+        template:
+          spec:
+            volumes:
+              - name: filebeat-syslog-certs
+                secret:
+                  secretName: filebeat-syslog-certs
+            containers:
+              - name: filebeat-syslog
+                volumeMounts:
+                  - name: filebeat-syslog-certs
+                    mountPath: /usr/share/filebeat/certs/

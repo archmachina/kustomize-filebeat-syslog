@@ -3,7 +3,7 @@
 kind: Kustomization
 
 secretGenerator:
-  - name: filebeat-syslog-cert
+  - name: filebeat-syslog-certs
     type: Opaque
 
   - name: filebeat-syslog-credentials
