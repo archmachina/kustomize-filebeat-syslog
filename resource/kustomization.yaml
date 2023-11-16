@@ -8,8 +8,8 @@ secretGenerator:
 
   - name: filebeat-syslog-credentials
     type: Opaque
-    # literals:
-    #   - elastic_username=changeme
+    literals:
+      - elastic_username=filebeat_writer
     #   - elastic_password=changeme
 
 configMapGenerator:
