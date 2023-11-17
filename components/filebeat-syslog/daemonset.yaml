@@ -82,12 +82,12 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: filebeat-syslog-credentials
-                  key: filebeat_username
+                  key: elastic_username
             - name: ELASTIC_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: filebeat-syslog-credentials
-                  key: filebeat_password
+                  key: elastic_password
           ports:
             - name: "tcp-9000"
               protocol: TCP
