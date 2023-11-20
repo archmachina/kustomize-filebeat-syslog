@@ -43,7 +43,7 @@ setup.template.pattern: "filebeat-syslog-%{[agent.version]}"
 setup.template.overwrite: false
 setup.template.settings:
   index.number_of_shards: 1
-  index.number_of_replicas: 1
+  index.number_of_replicas: "${INDEX_REPLICAS}"
 
 setup.ilm.enabled: true
 setup.ilm.policy_name: "filebeat-syslog"

@@ -88,6 +88,11 @@ spec:
                 secretKeyRef:
                   name: filebeat-syslog-credentials
                   key: elastic_password
+            - name: INDEX_REPLICAS
+              valueFrom:
+                configMapKeyRef:
+                  name: filebeat-syslog-config
+                  key: index_replicas
           ports:
             - name: "tcp-9000"
               protocol: TCP

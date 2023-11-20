@@ -25,3 +25,4 @@ configMapGenerator:
       - elasticwait_max_attempts=60
       - elastic_host=elastic-svc
       - elastic_port=9200
+      - index_replicas=1
